@@ -1,0 +1,83 @@
+.root{
+	-fx-background-color:white;
+}
+.tetris{
+	-fx-font-weight:BOLD;
+	-fx-text-fill:BLACK;
+	-fx-font-size:150%; 
+}
+.play{
+	-fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+.play:hover{
+	-fx-background-color:transparent;
+	-fx-font-weight:BOLD;
+	-fx-text-fill:black;
+	-fx-border-color:red;
+	-fx-border-radius:30;
+	-fx-border-width:2px;
+	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+	
+}
+.ins{
+	-fx-background-color: grey;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+.ins:hover{
+	-fx-background-color:transparent;
+	-fx-border-color:grey;
+	-fx-border-width:2px;
+	-fx-border-radius:30px;
+	-fx-text-fill:black;
+	-fx-font-weight:BOLD;
+	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+}
+.score{
+	-fx-background-color: grey;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+.score:hover{
+	-fx-background-color:transparent;
+	-fx-text-fill:black;
+	-fx-border-color:grey;
+	-fx-border-width:2px;
+	-fx-border-radius:30;
+	-fx-font-weight:BOLD;
+	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+}
+.cred{
+	
+	-fx-font-weight:BOLD;
+	-fx-font-size:97%;
+	-fx-background-color:#ededed; 
+	-fx-alignment: CENTER; 
+}
+.vbox{
+	-fx-background-color:#ededed;
+}
+.welcome{
+	-fx-font-weight:BOLD;
+	-fx-font-size:105%;
+	-fx-font-family:"Arial";
+}
+.back{
+	-fx-background-color: #0088ff;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+.back:hover{
+	-fx-background-color:transparent;
+	-fx-text-fill:black;
+	-fx-border-color:#0088ff;
+	-fx-border-radius:30;
+	-fx-border-width:2px;
+	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+}
