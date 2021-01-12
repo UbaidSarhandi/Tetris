@@ -23,6 +23,8 @@ public class TitleScreen extends Application{
 	@Override
 	public void start(Stage prime) throws Exception {
 		// TODO Auto-generated method stub
+		ConnectionFile cf = new ConnectionFile();
+		cf.createTables();
 		VBox pane= new VBox(20);
 		
 		Button play= new Button("Play");
@@ -34,8 +36,8 @@ public class TitleScreen extends Application{
 		quit.setPrefWidth(120);
 		ins.setPrefWidth(120);
 		play.setPrefWidth(120);
-		ConnectionFile cf = new ConnectionFile();
-		String bScore= cf.readFile(); //add score here
+		
+		String bScore= cf.getHighscore();//add score here
 		Label score= new Label("Best Score:" + " "+ bScore);
 		score.getStyleClass().add("welcome");
 		score.setPadding(new Insets(30,10,10,10));
@@ -70,11 +72,9 @@ public class TitleScreen extends Application{
 		paneH.getChildren().addAll(play,ins,quit);
 		pane.getStyleClass().add("pane");
 		
-		Label cred= new Label("Created by Hasnain Ali, Pir UbaidUllah Jan Sarhandi, Areeba Azam.");		
-		cred.getStyleClass().add("cred");
-		cred.setPadding(new Insets(20));
 		
-		Image img= new Image("file:///F:/Tetrix/tetris.jpg");
+		
+		Image img= new Image("file:tetris.jpg");
 		ImageView vImg= new ImageView(img);
 		vImg.setFitHeight(200);
 		vImg.setFitWidth(400);
@@ -89,7 +89,7 @@ public class TitleScreen extends Application{
 		root.getChildren().addAll(boxS,pane);
 		root.getStyleClass().add("root");
 		root.getStylesheets().add("design.css");
-		pane.getChildren().add(cred);
+		
 		
 		Scene scene= new Scene(root,500,500);
 		prime.setTitle("T E T R I S");

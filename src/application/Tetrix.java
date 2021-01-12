@@ -82,7 +82,7 @@ public class Tetrix extends Application {
 		level.setY(100);
 		level.setX(XMAX + 5);
 		level.setFill(Color.GREEN);
-		Image im = new Image("file:///C:/Users/44076/Desktop/Tetris/Background.jpg");
+		Image im = new Image("file:Background.jpg");
 		ImageView iv = new ImageView(im);
 		
 	iv.setFitHeight(YMAX);
@@ -152,8 +152,8 @@ public class Tetrix extends Application {
 							}
 							ConnectionFile cf = new ConnectionFile();
 							try {
-								cf.writetofile((name.substring(0, 3) + " " + Integer.toString(score)));
-							} catch (IOException e1) {
+								cf.saveScore(name, score);
+							} catch (Exception e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
@@ -228,8 +228,8 @@ public class Tetrix extends Application {
 		Rectangle b = form.b;
 		Rectangle c = form.c;
 		Rectangle d = form.d;
-		switch (form.getName()) {
-		case "j":
+		if(form.getName().equals("j")) {
+			
 			if (f == 1 && cB(a, 1, -1) && cB(c, -1, -1) && cB(d, -2, -2)) {
 				MoveRight(form.a);
 				MoveDown(form.a);
@@ -240,7 +240,7 @@ public class Tetrix extends Application {
 				MoveLeft(form.d);
 				MoveLeft(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 2 && cB(a, -1, -1) && cB(c, -1, 1) && cB(d, -2, 2)) {
 				MoveDown(form.a);
@@ -252,7 +252,7 @@ public class Tetrix extends Application {
 				MoveUp(form.d);
 				MoveUp(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 3 && cB(a, -1, 1) && cB(c, 1, 1) && cB(d, 2, 2)) {
 				MoveLeft(form.a);
@@ -264,7 +264,7 @@ public class Tetrix extends Application {
 				MoveRight(form.d);
 				MoveRight(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 4 && cB(a, 1, 1) && cB(c, 1, -1) && cB(d, 2, -2)) {
 				MoveUp(form.a);
@@ -276,10 +276,11 @@ public class Tetrix extends Application {
 				MoveDown(form.d);
 				MoveDown(form.d);
 				form.changeForm();
-				break;
+				
 			}
-			break;
-		case "l":
+			
+			
+		}else if(form.getName().equals("l")) {
 			if (f == 1 && cB(a, 1, -1) && cB(c, 1, 1) && cB(b, 2, 2)) {
 				MoveRight(form.a);
 				MoveDown(form.a);
@@ -290,7 +291,7 @@ public class Tetrix extends Application {
 				MoveRight(form.b);
 				MoveRight(form.b);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 2 && cB(a, -1, -1) && cB(b, 2, -2) && cB(c, 1, -1)) {
 				MoveDown(form.a);
@@ -302,7 +303,7 @@ public class Tetrix extends Application {
 				MoveRight(form.c);
 				MoveDown(form.c);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 3 && cB(a, -1, 1) && cB(c, -1, -1) && cB(b, -2, -2)) {
 				MoveLeft(form.a);
@@ -314,7 +315,7 @@ public class Tetrix extends Application {
 				MoveLeft(form.b);
 				MoveLeft(form.b);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 4 && cB(a, 1, 1) && cB(b, -2, 2) && cB(c, -1, 1)) {
 				MoveUp(form.a);
@@ -326,12 +327,9 @@ public class Tetrix extends Application {
 				MoveLeft(form.c);
 				MoveUp(form.c);
 				form.changeForm();
-				break;
+				
 			}
-			break;
-		case "o":
-			break;
-		case "s":
+		}else if(form.getName().equals("s")) {
 			if (f == 1 && cB(a, -1, -1) && cB(c, -1, 1) && cB(d, 0, 2)) {
 				MoveDown(form.a);
 				MoveLeft(form.a);
@@ -340,7 +338,7 @@ public class Tetrix extends Application {
 				MoveUp(form.d);
 				MoveUp(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 2 && cB(a, 1, 1) && cB(c, 1, -1) && cB(d, 0, -2)) {
 				MoveUp(form.a);
@@ -350,7 +348,7 @@ public class Tetrix extends Application {
 				MoveDown(form.d);
 				MoveDown(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 3 && cB(a, -1, -1) && cB(c, -1, 1) && cB(d, 0, 2)) {
 				MoveDown(form.a);
@@ -360,7 +358,7 @@ public class Tetrix extends Application {
 				MoveUp(form.d);
 				MoveUp(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 4 && cB(a, 1, 1) && cB(c, 1, -1) && cB(d, 0, -2)) {
 				MoveUp(form.a);
@@ -370,10 +368,9 @@ public class Tetrix extends Application {
 				MoveDown(form.d);
 				MoveDown(form.d);
 				form.changeForm();
-				break;
+				
 			}
-			break;
-		case "t":
+		}else if(form.getName().equals("t")) {
 			if (f == 1 && cB(a, 1, 1) && cB(d, -1, -1) && cB(c, -1, 1)) {
 				MoveUp(form.a);
 				MoveRight(form.a);
@@ -382,7 +379,7 @@ public class Tetrix extends Application {
 				MoveLeft(form.c);
 				MoveUp(form.c);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 2 && cB(a, 1, -1) && cB(d, -1, 1) && cB(c, 1, 1)) {
 				MoveRight(form.a);
@@ -392,7 +389,7 @@ public class Tetrix extends Application {
 				MoveUp(form.c);
 				MoveRight(form.c);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 3 && cB(a, -1, -1) && cB(d, 1, 1) && cB(c, 1, -1)) {
 				MoveDown(form.a);
@@ -402,7 +399,7 @@ public class Tetrix extends Application {
 				MoveRight(form.c);
 				MoveDown(form.c);
 				form.changeForm();
-				break;
+			
 			}
 			if (f == 4 && cB(a, -1, 1) && cB(d, 1, -1) && cB(c, -1, -1)) {
 				MoveLeft(form.a);
@@ -412,10 +409,9 @@ public class Tetrix extends Application {
 				MoveDown(form.c);
 				MoveLeft(form.c);
 				form.changeForm();
-				break;
+				
 			}
-			break;
-		case "z":
+		}else if(form.getName().equals("z")) {
 			if (f == 1 && cB(b, 1, 1) && cB(c, -1, 1) && cB(d, -2, 0)) {
 				MoveUp(form.b);
 				MoveRight(form.b);
@@ -424,7 +420,7 @@ public class Tetrix extends Application {
 				MoveLeft(form.d);
 				MoveLeft(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 2 && cB(b, -1, -1) && cB(c, 1, -1) && cB(d, 2, 0)) {
 				MoveDown(form.b);
@@ -434,7 +430,7 @@ public class Tetrix extends Application {
 				MoveRight(form.d);
 				MoveRight(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 3 && cB(b, 1, 1) && cB(c, -1, 1) && cB(d, -2, 0)) {
 				MoveUp(form.b);
@@ -444,7 +440,7 @@ public class Tetrix extends Application {
 				MoveLeft(form.d);
 				MoveLeft(form.d);
 				form.changeForm();
-				break;
+			
 			}
 			if (f == 4 && cB(b, -1, -1) && cB(c, 1, -1) && cB(d, 2, 0)) {
 				MoveDown(form.b);
@@ -454,10 +450,9 @@ public class Tetrix extends Application {
 				MoveRight(form.d);
 				MoveRight(form.d);
 				form.changeForm();
-				break;
+			
 			}
-			break;
-		case "i":
+		}else if(form.getName().equals("i")) {
 			if (f == 1 && cB(a, 2, 2) && cB(b, 1, 1) && cB(d, -1, -1)) {
 				MoveUp(form.a);
 				MoveUp(form.a);
@@ -468,7 +463,7 @@ public class Tetrix extends Application {
 				MoveDown(form.d);
 				MoveLeft(form.d);
 				form.changeForm();
-				break;
+			
 			}
 			if (f == 2 && cB(a, -2, -2) && cB(b, -1, -1) && cB(d, 1, 1)) {
 				MoveDown(form.a);
@@ -480,7 +475,7 @@ public class Tetrix extends Application {
 				MoveUp(form.d);
 				MoveRight(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 3 && cB(a, 2, 2) && cB(b, 1, 1) && cB(d, -1, -1)) {
 				MoveUp(form.a);
@@ -492,7 +487,7 @@ public class Tetrix extends Application {
 				MoveDown(form.d);
 				MoveLeft(form.d);
 				form.changeForm();
-				break;
+				
 			}
 			if (f == 4 && cB(a, -2, -2) && cB(b, -1, -1) && cB(d, 1, 1)) {
 				MoveDown(form.a);
@@ -504,10 +499,15 @@ public class Tetrix extends Application {
 				MoveUp(form.d);
 				MoveRight(form.d);
 				form.changeForm();
-				break;
-			}
-			break;
-		}
+				
+		}else if(form.getName().equals("o")) {
+			
+		}}
+		
+		
+		
+		
+		
 	}
 
 	private void RemoveRows(Pane pane) {

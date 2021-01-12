@@ -8,6 +8,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.sound.sampled.AudioInputStream;
@@ -25,100 +30,89 @@ public class ConnectionFile {
 	public static String[][] data = new String[10][2];
 	private static Scanner f;
 	static int linecount = 0;
-	static int bull = 0, sheep = 0 , finalscore = 0;
+	 int bull = 0, sheep = 0;
+	String finalscore ;
 
-	public void writetofile(String string) throws IOException
-	{
-		FileWriter f= new FileWriter("Score.txt",true);
-		f.write(string);
-		f.write("\n");
-		f.close();
+	public  Connection getConnection() throws Exception {
+		 
+
+		Connection c = null;
 		
+		try {
+			
+			Class.forName("org.sqlite.JDBC");
+			c= DriverManager.getConnection("jdbc:sqlite:Scores.db");
+			System.out.println("SQLite Db is connected");
+		} catch(Exception e){
+			System.out.println(e);
+			
+		}
+		
+		
+		return c;
+		 
 	}
 	
 	
-	 public static void playSound()  { 
-			
-		 File filestring= new File("C:\\Users\\lenovo\\Downloads\\Linemp3.mp3");
-		 Media media= new Media(filestring.toURI().toString());
-		 MediaPlayer mPlayer= new MediaPlayer(media);
-		 mPlayer.setOnReady(new Runnable() {
-			public void run() {
-	            mPlayer.play();
-			}
-			 
-		 });
-		
-	  }
 	 
-	
-	public static String readFile() throws IOException {
+	public void saveScore( String playerName, int score) throws Exception {
+
 		
-		FileReader fr = new FileReader(hiscore);
-		BufferedReader br = new BufferedReader(fr);
-		String line=null;
-		String records = null;
-		
-		
-		
-		while((line = br.readLine())!=null)
-		{
+		try {
 			
-			f= new Scanner(line);
-			while (f.hasNext()) {		
-				for (int i = 0; i <= 2 ; i++) {
-					if (i == 1) {
-						f.next();
-						records	= f.next();
-						 bull = Integer.parseInt(records);
-						 sheep = Highscore(bull);
-					}
-				
-					
-				}
-				
-			}
+			Connection c = getConnection();
+			PreparedStatement post = c.prepareStatement("INSERT INTO PlayerScore (playerName,playerScore) VALUES ('"+playerName+"' ,'"+score+"')");
+			post.executeUpdate();
+			c.close();
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		
-		records = Integer.toString(sheep);
-	
-		
-		records = freturn(records);
-		return records;
-		
 	}
 	
-	
-	public static String freturn(String k ) throws IOException {
-		String line;
-		FileReader fr = new FileReader(hiscore);
-		BufferedReader br = new BufferedReader(fr);
-		
-		while((line = br.readLine())!= null) {
+	public String getHighscore()  {
+		try {
+			Connection c = getConnection();
 			
-			if (line.contains(k)) {
-				k = line;
-			}
+			PreparedStatement post = c.prepareStatement("SELECT * FROM PlayerScore WHERE playerScore=(SELECT max(playerScore)FROM PlayerScore)");
+			ResultSet result = post.executeQuery() ;
+			
+				ArrayList<String> list = new ArrayList<String>();
+				
+				list.add(result.getString("playerName"));
+				list.add(result.getString("playerScore"));
+				finalscore = list.get(0) + " " + list.get(1);
+			c.close();
+			
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		return k;
-	}
-	
-	
-	public static int Highscore(int score) {
-		if (score > finalscore) {
-			finalscore = score;
-		}
-		
 		return finalscore;
-
-		
 	}
 	
 	
+	
+	public void createTables() {
+		try {
+			Connection c = getConnection();
+			PreparedStatement post = c.prepareStatement("CREATE TABLE IF NOT EXISTS PlayerScore (\n"+
+					"	playerName TEXT,\n" + 
+					"	playerScore	INTEGER)" 
+					);
+			post.executeUpdate();
+			
+			c.close();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
-	public static void main(String[] args) throws IOException {
-		playSound();
-		readFile();
+	}
+	
+
+
+
+}
 	
 	
-	}}

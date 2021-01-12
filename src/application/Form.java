@@ -28,30 +28,23 @@ public class Form {
 		this.name = name;
 	
 	
-	switch (name) {
-	
-	case "j":
+	if(name.equals("j")) {
 		color = Color.SLATEGRAY;
-		break;
-	case "l":
+	}else if(name.equals("l")) {
 		color = Color.DARKGOLDENROD;
-		break;
-	case "o":
+	}else if(name.equals("o")) {
 		color = Color.INDIANRED;
-		break;
-	case "s":
+	}else if(name.equals("s")) {
 		color = Color.FORESTGREEN;
-		break;
-	case "t":
+	}else if(name.equals("t")) {
 		color = Color.CADETBLUE;
-		break;
-	case "z":
+	}else if(name.equals("z")) {
 		color = Color.HOTPINK;
-		break;
-	case "i":
+	}else if(name.equals("i")) {
 		color = Color.SANDYBROWN;
-		break;
 	}
+	
+	
 	this.a.setFill(color);
 	this.b.setFill(color);
 	this.c.setFill(color);
